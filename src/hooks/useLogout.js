@@ -12,8 +12,8 @@ export const useLogout = () => {
     setError(null); //just in case there wa an error before
     setIsPending(true);
 
-    //sign the user out
     try {
+      //sign the user out
       await projectAuth.signOut();
 
       //dispatch logout function (we skipped the payload cause we just want it to be null)

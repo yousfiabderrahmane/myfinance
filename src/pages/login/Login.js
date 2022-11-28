@@ -37,8 +37,8 @@ export default function Login() {
 
       <div className="center">
         {isPending ? (
-          <button disabled className="btn">
-            Login
+          <button disabled className="btn ">
+            Loading ...
           </button>
         ) : (
           <button className="btn">Login</button>
