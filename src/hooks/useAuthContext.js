@@ -6,7 +6,7 @@ export const useAuthContext = () => {
 
   //check if used out of its scoop
   if (!context) {
-    throw Error("useAuthContext must be inside an AuthCOntextProvider");
+    throw Error("useAuthContext must be inside an AuthContextProvider");
   }
 
   return context;
