@@ -24,7 +24,7 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     //this function will communicate with firebase, to know when there is some kind of change in authentication state
-    //this function will fire every time ther is a change in the authentication state change
+    //this function will fire every time there is a change in the authentication state change
     const unsub = projectAuth.onAuthStateChanged((user) => {
       dispatch({ type: "AUTH_IS_READY", payload: user });
       unsub();

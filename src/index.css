@@ -45,3 +45,10 @@ ul {
 .error {
   color: #f47351;
 }
+.loading {
+  border: none;
+}
+.loading:hover {
+  background: white;
+  color: #1f9751;
+}

@@ -15,6 +15,7 @@ export default function Navbar() {
       <ul>
         <li className={styles.title}>myFinance</li>
 
+        {/*if user null */}
         {!user ? (
           <>
             <li>
