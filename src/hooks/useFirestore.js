@@ -2,30 +2,29 @@ import { useReducer, useEffect, useState } from "react";
 import { projectFirestore, timestamp } from "../firebase/config";
 
 let initialState = {
-  //when we do a request firestore sends us back an object that contains the document we've just created, so we'll update the state to match the document we've just got back
   document: null,
   isPending: false,
   error: null,
-  succes: null,
+  success: null,
 };
 
 const firestoreReducer = (state, action) => {
   switch (action.type) {
     case "IS_PENDING":
-      return { isPending: true, document: null, error: null, succes: false };
-    case "ADDED_DOCUMENT":
-      return {
-        isPending: false,
-        document: action.payload,
-        succes: true,
-        error: null,
-      };
+      return { success: false, isPending: true, error: null, document: null };
     case "ERROR":
       return {
+        success: false,
         isPending: false,
-        document: null,
-        succes: false,
         error: action.payload,
+        document: null,
+      };
+    case "ADDED_DOCUMENT":
+      return {
+        success: true,
+        isPending: false,
+        error: null,
+        document: action.payload,
       };
     default:
       return state;
@@ -34,26 +33,25 @@ const firestoreReducer = (state, action) => {
 
 export const useFirestore = (collection) => {
   const [response, dispatch] = useReducer(firestoreReducer, initialState);
-  const [isCancelled, setIsCancelled] = useState(false); //cleanup
+  const [isCancelled, setIsCancelled] = useState(false);
 
-  //collection ref
+  // collection ref
   const ref = projectFirestore.collection(collection);
 
-  //only dispatch if not cancelled(it saves us from doing the ckeck again and again)
+  // only dispatch if not cancelled
   const dispatchIfNotCancelled = (action) => {
     if (!isCancelled) {
       dispatch(action);
     }
   };
 
-  //add document
+  // add a document
   const addDocument = async (doc) => {
-    dispatch({ type: "IS_PRENDING" });
-    try {
-      // it takes the current date at the time of trying to add this document and it passes it into the timestamp object that will create us a new FIrebase timestamp and store it into this constant
-      const createdAt = timestamp.fromDate(newDate());
-      const addedDocument = await ref.add({ ...doc, createdAt: createdAt });
+    dispatch({ type: "IS_PENDING" });
 
+    try {
+      const createdAt = timestamp.fromDate(new Date());
+      const addedDocument = await ref.add({ ...doc, createdAt });
       dispatchIfNotCancelled({
         type: "ADDED_DOCUMENT",
         payload: addedDocument,
@@ -63,13 +61,12 @@ export const useFirestore = (collection) => {
     }
   };
 
-  //delete document
-  const deleteDocument = async (id) => {};
+  // delete a document
+  const deleteDocument = async (doc) => {};
 
   useEffect(() => {
-    return () => {
-      setIsCancelled(true);
-    };
+    setIsCancelled(false); // added cause of thereactstrictmode bs
+    return () => setIsCancelled(true);
   }, []);
 
   return { addDocument, deleteDocument, response };
