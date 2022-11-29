@@ -1,5 +1,5 @@
 import { useReducer, useEffect, useState } from "react";
-import { projectFirestore } from "../firebase/config";
+import { projectFirestore, timestamp } from "../firebase/config";
 
 let initialState = {
   //when we do a request firestore sends us back an object that contains the document we've just created, so we'll update the state to match the document we've just got back
@@ -50,7 +50,9 @@ export const useFirestore = (collection) => {
   const addDocument = async (doc) => {
     dispatch({ type: "IS_PRENDING" });
     try {
-      const addedDocument = await ref.add(doc);
+      // it takes the current date at the time of trying to add this document and it passes it into the timestamp object that will create us a new FIrebase timestamp and store it into this constant
+      const createdAt = timestamp.fromDate(newDate());
+      const addedDocument = await ref.add({ ...doc, createdAt: createdAt });
 
       dispatchIfNotCancelled({
         type: "ADDED_DOCUMENT",
