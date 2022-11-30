@@ -17,3 +17,19 @@
   color: #777;
   width: 100%;
 }
+@media (max-width: 500px) {
+  .signup-form input {
+    width: 100%;
+  }
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+  }
+  .signup-form label {
+    margin: 0px auto;
+  }
+}

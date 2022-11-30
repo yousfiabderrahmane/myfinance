@@ -26,6 +26,15 @@ const firestoreReducer = (state, action) => {
         error: null,
         document: action.payload,
       };
+    case "DELETED_DOCUMENT":
+      return {
+        ...state,
+        success: true,
+        isPending: false,
+        error: null,
+        // document: action.payload,
+        // i dont get it we deleted it WTF
+      };
     default:
       return state;
   }
@@ -62,7 +71,20 @@ export const useFirestore = (collection) => {
   };
 
   // delete a document
-  const deleteDocument = async (doc) => {};
+  const deleteDocument = async (id) => {
+    dispatch({ type: "IS_PENDING" });
+    try {
+      //doc to get the exact document we want
+      const deleteDocument = await ref.doc(id).delete();
+
+      dispatchIfNotCancelled({
+        type: "DELETED_DOCUMENT",
+        payload: deleteDocument,
+      });
+    } catch (err) {
+      dispatchIfNotCancelled({ type: "ERROR", payload: "Could not delete" });
+    }
+  };
 
   useEffect(() => {
     setIsCancelled(false); // added cause of thereactstrictmode bs
