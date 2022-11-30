@@ -1,12 +1,14 @@
 import { useEffect, useState, useRef } from "react";
 import { projectFirestore } from "../firebase/config";
 
-export const useCollection = (collection, _query) => {
+export const useCollection = (collection, _query, _orderBy) => {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
 
-  const query = useRef(_query).current; //we doing this so javascript don't see it as different and run us into an infinite loop =>  cause array reference type (different on avery function call)
+  //we doing this so javascript don't see it as different and run us into an infinite loop =>  cause array reference type (different on avery function call)
+  const query = useRef(_query).current;
+  const orderBy = useRef(_orderBy).current;
 
   useEffect(() => {
     setIsPending(true);
@@ -15,7 +17,10 @@ export const useCollection = (collection, _query) => {
     if (query) {
       ref = ref.where(...query);
     }
-
+    if (orderBy) {
+      //method
+      ref = ref.orderBy(...orderBy);
+    }
     //real time listener to firebase collection
     //subscribtion returns to us an unsub function
     const unsubscribe = ref.onSnapshot(
@@ -42,7 +47,7 @@ export const useCollection = (collection, _query) => {
     return () => {
       unsubscribe();
     };
-  }, [collection, query]);
+  }, [collection, query, orderBy]);
 
   return { documents, error, isPending };
 };

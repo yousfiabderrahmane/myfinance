@@ -8,7 +8,8 @@ export default function Home() {
   const { user } = useAuthContext();
   const { documents, error, isPending } = useCollection(
     "transactions",
-    ["uid", "==", user.uid] //those 3 arguments goes into the query (we'll spread)
+    ["uid", "==", user.uid],
+    ["createdAt", "desc"] //those 3 arguments goes into the query (we'll spread), //desc = descending
   );
   return (
     <div className={styles.container}>
