@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { projectFirestore } from "../firebase/config";
 
-export const useCollection = (collection) => {
+export const useCollection = (collection, _query) => {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(false);
+
+  const query = useRef(_query).current; //we doing this so javascript don't see it as different and run us into an infinite loop =>  cause array reference type (different on avery function call)
 
   useEffect(() => {
+    setIsPending(true);
     let ref = projectFirestore.collection(collection);
 
     if (query) {
@@ -22,12 +26,15 @@ export const useCollection = (collection) => {
         });
 
         //update state
+        console.log(results);
         setDocuments(results);
+        setIsPending(false);
         setError(null);
       },
       (error) => {
         console.log(error);
         setError("Could not fetch the data.");
+        setIsPending(false);
       }
     );
 
@@ -35,7 +42,7 @@ export const useCollection = (collection) => {
     return () => {
       unsubscribe();
     };
-  }, [collection]);
+  }, [collection, query]);
 
-  return { documents, error };
+  return { documents, error, isPending };
 };

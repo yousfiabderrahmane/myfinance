@@ -47,6 +47,9 @@
   color: #1f9751;
   margin-bottom: 20px;
 }
+.isPending {
+  color: #1f9751;
+}
 .sidebar aside {
   margin-top: 40px;
   color: #555;
