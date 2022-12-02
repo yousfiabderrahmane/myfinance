@@ -4,6 +4,7 @@ import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
+import Logout from "../assets/logout.svg";
 
 export default function Navbar() {
   const { logout } = useLogout();
@@ -29,11 +30,13 @@ export default function Navbar() {
           <>
             <li>
               Hello,{" "}
-              <span style={{ fontWeight: "bold" }}>{user.displayName}!</span>
+              <span style={{ color: "#1f9751", fontWeight: "bold" }}>
+                {user.displayName}!
+              </span>
             </li>
             <li>
-              <button className="btn" onClick={logout}>
-                Logout
+              <button className="logout" onClick={logout}>
+                <img src={Logout} alt="logout" />
               </button>
             </li>
           </>
