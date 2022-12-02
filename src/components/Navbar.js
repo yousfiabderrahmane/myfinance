@@ -30,9 +30,7 @@ export default function Navbar() {
           <>
             <li>
               Hello,{" "}
-              <span style={{ color: "#1f9751", fontWeight: "bold" }}>
-                {user.displayName}!
-              </span>
+              <span style={{ fontWeight: "bold" }}>{user.displayName}!</span>
             </li>
             <li>
               <button className="logout" onClick={logout}>

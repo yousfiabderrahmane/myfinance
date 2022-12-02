@@ -67,3 +67,12 @@ input:focus {
   background: white;
   color: #1f9751;
 }
+.logout {
+  background: transparent;
+  border: none;
+}
+.logout img {
+  cursor: pointer;
+  filter: invert(45%) sepia(76%) saturate(467%) hue-rotate(92deg)
+    brightness(89%) contrast(87%);
+}
