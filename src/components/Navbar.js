@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <nav className={styles.navbar}>
       <ul>
-        <li className={styles.title}>myFinance</li>
+        <li className={styles.title}>YousFinance</li>
 
         {/*if user null */}
         {!user ? (
@@ -27,7 +27,10 @@ export default function Navbar() {
           </>
         ) : (
           <>
-            <li>Hello, {user.displayName}!</li>
+            <li>
+              Hello,{" "}
+              <span style={{ fontWeight: "bold" }}>{user.displayName}!</span>
+            </li>
             <li>
               <button className="btn" onClick={logout}>
                 Logout

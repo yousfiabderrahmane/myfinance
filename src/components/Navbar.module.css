@@ -16,15 +16,21 @@
   font-weight: bold;
   letter-spacing: 1px;
   font-size: 1.2em;
-  filter: drop-shadow(0px 0px 4px green);
 }
+
 .navbar button,
 .navbar a {
   margin-left: 16px;
+  font-weight: bold;
 }
+
 .navbar a {
   color: #333;
   text-decoration: none;
+  transition: all 0.2s;
+}
+.navbar a:hover {
+  color: #1f9751;
 }
 @media (max-width: 500px) {
   .navbar ul {
@@ -37,11 +43,12 @@
   }
   .title {
     margin-right: unset;
+    color: #1f9751;
   }
   .navbar a {
     margin-left: unset;
   }
   .navbar {
-    border-bottom: 2px solid #4da64d;
+    border-bottom: 3px solid #4da64d;
   }
 }

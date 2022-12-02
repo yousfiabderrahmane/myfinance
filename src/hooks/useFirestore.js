@@ -11,7 +11,7 @@ let initialState = {
 const firestoreReducer = (state, action) => {
   switch (action.type) {
     case "IS_PENDING":
-      return { success: false, isPending: true, error: null, document: null };
+      return { ...state, isPending: true };
     case "ERROR":
       return {
         success: false,
@@ -82,7 +82,10 @@ export const useFirestore = (collection) => {
         payload: deleteDocument,
       });
     } catch (err) {
-      dispatchIfNotCancelled({ type: "ERROR", payload: "Could not delete" });
+      dispatchIfNotCancelled({
+        type: "ERROR",
+        payload: "Could not delete document",
+      });
     }
   };
 

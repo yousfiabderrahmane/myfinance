@@ -42,7 +42,22 @@ ul {
   text-align: left;
   gap: 30px;
 }
+@media (max-width: 580px) {
+  .center {
+    display: unset;
+    flex-direction: unset;
+    align-items: unset;
+    justify-content: unset;
+    text-align: unset;
+    gap: 30px;
+  }
+}
+input:focus {
+  outline: 2px solid #1f9751;
+  border: 2px solid #1f9751;
+}
 .error {
+  margin-top: 20px;
   color: #f47351;
 }
 .loading {

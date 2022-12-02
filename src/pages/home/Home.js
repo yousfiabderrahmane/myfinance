@@ -14,8 +14,12 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        {isPending && <h3 className={styles.isPending}>Loading ...</h3>}
-        {error && <p>{error}</p>}
+        {isPending && (
+          <h3 style={{ marginTop: "20px" }} className={styles.isPending}>
+            Loading ...
+          </h3>
+        )}
+        {error && <p className="error">{error}</p>}
         {documents && <TransactionList transactions={documents} />}
       </div>
       <div className={styles.sidebar}>

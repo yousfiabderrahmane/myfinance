@@ -19,6 +19,7 @@ export const useSignup = () => {
         email,
         password
       );
+
       //user is a proprety on the res object
 
       if (!res) {

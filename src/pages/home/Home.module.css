@@ -5,9 +5,8 @@
   margin: 60px auto;
 }
 h2 {
-  filter: drop-shadow(0px 0px 4px green);
+  text-shadow: 2px 2px 1px #1f9751;
 }
-
 .content {
   padding-right: 30px;
 }
@@ -32,7 +31,7 @@ h2 {
   font-size: 1em;
 }
 .sidebar label {
-  margin: 0 auto 20px;
+  margin: 0px auto 10px;
   display: block;
   color: #fff;
 }
