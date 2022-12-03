@@ -33,7 +33,7 @@ h2 {
 }
 .sidebar label {
   margin: 0px auto 10px;
-  display: block;
+  display: ruby-base;
   color: #fff;
 }
 .sidebar button {
