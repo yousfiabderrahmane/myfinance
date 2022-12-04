@@ -39,14 +39,18 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    gap: 10px;
+    gap: 25px;
   }
+
   .title {
     margin-right: unset;
     color: #1f9751;
   }
   .navbar a {
     margin-left: unset;
+    border: 2px solid #1f9751;
+    padding: 5px 10px;
+    border-radius: 10px;
   }
   .navbar {
     border-bottom: 3px solid #4da64d;
