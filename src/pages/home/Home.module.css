@@ -95,9 +95,7 @@ h2 {
   line-height: 0;
   font-size: 0.9em;
   cursor: pointer;
-  border-top-left-radius: 50%;
-  border-bottom-left-radius: 50%;
-  border-bottom-right-radius: 50%;
+  border-radius: 50%;
 }
 .trash {
   height: 15px;
@@ -144,9 +142,6 @@ h2 {
     line-height: 0;
     font-size: 0.9em;
     cursor: pointer;
-    border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
   }
 }
 @media (max-width: 700px) {
